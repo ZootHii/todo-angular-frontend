@@ -1,0 +1,43 @@
+<div class="container">
+  <form [formGroup]="todoForm">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-lg-10">
+          <input
+            class="form-control shadow"
+            id="what_todo"
+            formControlName="what_todo"
+            type="text"
+            placeholder="What ToDo"
+          />
+        </div>
+        <div class="col-lg-2">
+          <button (click)="addTodo()" type="button" class="btn btn-outline-success ms-2 shadow" style="font-size: 105%;">Add ToDo</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <table *ngIf="dataLoaded==true" class="table align-middle table-hover">
+        <thead class="table-light">
+        <tr>
+          <th class="col-md-2">ID</th>
+          <th>Todo</th>
+          <th>Added</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let todo of todos">
+          <td style="font-size: 110%;">{{todo.id}}</td>
+          <td class="col-lg-4" style="font-size: 115%;"><i>{{todo.what_todo}}</i></td>
+          <td class="col-lg-4" style="font-size: 115%;"><i>{{todo.created_at | date:'medium'}}</i></td>
+          <td>
+            <button (click)="updateTodo(todo)" type="button" class="btn btn-outline-dark ms-2 shadow" style="font-size: 105%;">Update</button>
+            <button (click)="deleteTodo(todo)" type="button" class="btn btn-outline-danger ms-2 shadow" style="font-size: 105%;">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>
